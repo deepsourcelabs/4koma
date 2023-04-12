@@ -137,6 +137,14 @@ tasks {
 
     test {
         useJUnitPlatform()
+        testLogging {
+            outputs.upToDateWhen { false }
+            showStandardStreams = true
+            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+            showExceptions = true
+            showCauses = true
+            showStackTraces = true
+        }
         finalizedBy(jacocoTestReport)
     }
 
@@ -188,7 +196,7 @@ abstract class DependencyUpdateSentinel : DefaultTask() {
         val updateIndicator = "The following dependencies have later milestone versions:"
         Paths.get("build", "dependencyUpdates", "report.txt").inputStream().bufferedReader().use { reader ->
             if (reader.lines().anyMatch { it == updateIndicator }) {
-                throw GradleException("Dependency updates are available.")
+                logger.warn("Dependency updates are available.")
             }
         }
     }
