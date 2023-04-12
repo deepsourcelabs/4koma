@@ -112,15 +112,17 @@ tasks {
         }
     }
 
-    test {
-        useJUnitPlatform()
-        outputs.upToDateWhen { false }
-        showStandardStreams = true
-        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-        showExceptions = true
-        showCauses = true
-        showStackTraces = true
-        finalizedBy(jacocoTestReport)
+        test {
+            useJUnitPlatform()
+            testLogging {
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
+                exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+                showExceptions = true
+                showCauses = true
+                showStackTraces = true
+            }
+            finalizedBy(jacocoTestReport)
     }
 
     build {
