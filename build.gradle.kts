@@ -114,8 +114,12 @@ tasks {
 
     test {
         useJUnitPlatform()
-        testLogging.showStandardStreams = true
-        testLogging.exceptionFormat = TestExceptionFormat.FULL
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
         finalizedBy(jacocoTestReport)
     }
 
