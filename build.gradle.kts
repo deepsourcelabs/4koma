@@ -115,7 +115,7 @@ tasks {
     test {
         useJUnitPlatform()
         testLogging.showStandardStreams = true
-        testLogging.exceptionFormat = "full"
+        testLogging.exceptionFormat = TestExceptionFormat.FULL
         finalizedBy(jacocoTestReport)
     }
 
