@@ -43,7 +43,7 @@ jobs:
         tag_name: ${{ env.RELEASE_VERSION }}
         body: "new release"
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.RELEASE_PAT }}
     - name: upload linux artifact
       uses: actions/upload-release-asset@v1
       env:
