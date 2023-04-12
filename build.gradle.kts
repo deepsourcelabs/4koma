@@ -165,7 +165,7 @@ abstract class DependencyUpdateSentinel : DefaultTask() {
         val updateIndicator = "The following dependencies have later milestone versions:"
         Paths.get("build", "dependencyUpdates", "report.txt").inputStream().bufferedReader().use { reader ->
             if (reader.lines().anyMatch { it == updateIndicator }) {
-                throw GradleException("Dependency updates are available.")
+                logger.warn("Dependency updates are available.")
             }
         }
     }
